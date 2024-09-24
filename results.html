@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Game Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <h1>Game Results</h1>
+        </div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTableBody"></tbody>
+        </table>
+    </div>
+   
+    <script>
+        const resultsTableBody = document.getElementById('resultsTableBody');
+        const gameResults = JSON.parse(localStorage.getItem('gameResults')) || [];
+
+        gameResults.forEach(result => {
+            const row = document.createElement('tr');
+            if (result.winName === "Incomplete") {
+        row.innerHTML = `
+            <td><a href="game.html?id=${result.id}">${result.id}</a></td>
+            <td>${result.player1}</td>
+            <td>${result.player2}</td>
+            <td>${result.winName}</td>
+        `;
+    } else {
+        row.innerHTML = `
+            <td>${result.id}</td>
+            <td>${result.player1}</td>
+            <td>${result.player2}</td>
+            <td>${result.winName}</td>
+        `;
+    }
+            resultsTableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
