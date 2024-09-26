@@ -29,7 +29,6 @@ const restartButton = document.getElementById("restartButton");
   console.log("Game id", gameId);
   
   const loadGame = (id) => {
-    console.log("first")
     const gameResults = JSON.parse(localStorage.getItem('gameResults')) || [];
     const gameData = gameResults.find(game => game.id == id);
   
@@ -77,7 +76,6 @@ const restartButton = document.getElementById("restartButton");
   
   const winFunction = () => {
     for (let i = 0; i < win.length; i++) {
-      console.log(win[i])
       const [a, b, c] = win[i];
       if (container[a] && container[a] === container[b] && container[a] === container[c]) {
         boxes[a].style.backgroundColor = "green";
@@ -101,7 +99,6 @@ const restartButton = document.getElementById("restartButton");
   };
   
   const boxFunction = (e) => {
-    console.log("box function",e)
     const box = Array.from(boxes);
     const boxIndex = box.indexOf(e.target);
   
@@ -166,19 +163,17 @@ const restartButton = document.getElementById("restartButton");
     }
   };
 
+  boxes.forEach((box) => {
+    box.addEventListener("click", boxFunction);
+  });
 
-boxes.forEach((box) => {
-  box.addEventListener("click", boxFunction);
-  console.log("third")
-});
+
+  if (gameId) {
+    loadGame(gameId);
+  } else {
+  createNewGame();
+  }
 
 
 restartButton.addEventListener("click", restartFunction);
-
-if (gameId) {
-  loadGame(gameId);
-} else {
-  createNewGame();
-}
-
 
