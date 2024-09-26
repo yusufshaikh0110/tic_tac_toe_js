@@ -60,28 +60,28 @@ h1 {
     margin: 2rem 0;
 }
 
-.container{
+.container {
     height: 360px;
     width: 360px;
-    margin-right: auto;
-    margin-left: auto;
+    margin: auto;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
-.box{
+.box {
     background-color: #252525;
-    outline: 1px solid;
-    height: 120px;
-    width: 120px;
+    border: 1px solid white;
     display: flex;
-    font-size: 2em;
-    line-height: 100px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
-.box:hover{
-    background-color: #1c1c1d;
+
+.box:hover {
+    background-color: #333;
 }
 
 #message {

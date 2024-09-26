@@ -1,7 +1,7 @@
 const boxes = document.querySelectorAll(".box");
 const restartButton = document.getElementById("restartButton");
 
-const GameScript = function() {
+
   const message = document.getElementById("message");
   let currentPlayer = "X";
   let gameOn = true;
@@ -29,6 +29,7 @@ const GameScript = function() {
   console.log("Game id", gameId);
   
   const loadGame = (id) => {
+    console.log("first")
     const gameResults = JSON.parse(localStorage.getItem('gameResults')) || [];
     const gameData = gameResults.find(game => game.id == id);
   
@@ -100,6 +101,7 @@ const GameScript = function() {
   };
   
   const boxFunction = (e) => {
+    console.log("box function",e)
     const box = Array.from(boxes);
     const boxIndex = box.indexOf(e.target);
   
@@ -164,21 +166,19 @@ const GameScript = function() {
     }
   };
 
-  return {
-    restartFunction, boxFunction, loadGame, createNewGame
-  }
-
-}()
-
-if (gameId) {
-  GameScript.loadGame(gameId);
-} else {
-  GameScript.createNewGame();
-}
 
 boxes.forEach((box) => {
-  box.addEventListener("click", GameScript.boxFunction());
+  box.addEventListener("click", boxFunction);
+  console.log("third")
 });
 
-restartButton.addEventListener("click", GameScript.restartFunction());
+
+restartButton.addEventListener("click", restartFunction);
+
+if (gameId) {
+  loadGame(gameId);
+} else {
+  createNewGame();
+}
+
 
